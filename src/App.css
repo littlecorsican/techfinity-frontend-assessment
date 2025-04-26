@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  background-image: url('../public/bg-light.png'); 
+  background-size: cover;
+  background-repeat: no-repeat; 
+  background-position: center;
+  min-height: 100vh; 
 }
 
 .App-logo {

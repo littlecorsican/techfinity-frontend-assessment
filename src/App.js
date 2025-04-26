@@ -7,6 +7,13 @@ import { getWeatherByLatLong } from './lib/getWeatherByLatLong';
 import { useState, useRef, useContext } from 'react';
 import { WeatherProvider, WeatherContext } from './context/WeatherContext';
 import "@govtechmy/myds-style/full.css";
+import CustomButton from './components/Shared/CustomButton';
+import {
+  Callout,
+  CalloutAction,
+  CalloutTitle,
+  CalloutContent,
+} from "@govtechmy/myds-react/callout";
 
 function Client() {
   const cityRef = useRef("");
@@ -23,6 +30,7 @@ function Client() {
       const { lat, lon } = await getLatLongByName({ name: city, apiKey, baseUrl: apiUrl });
       console.log(lat, lon);
       const weatherData = await getWeatherByLatLong({ lat, lon, apiKey, baseUrl: apiUrl });
+      console.log(weatherData);
     } catch (error) {
       console.error('Error, ', error);
       setShowNoResult(true);
@@ -42,25 +50,28 @@ function Client() {
           <label htmlFor='city_input' className='px-2 font-arial text-2xl'>
             City: 
           </label>
-          <input type="text" id="city_input" className="border-2 border-black rounded" ref={cityRef} />
+          <input type="text" id="city_input" className="border-2 border-black rounded w-80" ref={cityRef} />
         </div>
         <div className="p-2">
           <label htmlFor='city_input' className='px-2 font-arial text-2xl'>
             Country: 
           </label>
-          <input type="text" id="country_input" className='border-2 border-black rounded' ref={countryRef} />
+          <input type="text" id="country_input" className='border-2 border-black rounded w-80' ref={countryRef} />
         </div>
         <div className="p-2">
-          <button onClick={search}>
+          <CustomButton onClick={search}>
             Search
-          </button>
+          </CustomButton>
         </div>
         <div className="p-2">
-          <button onClick={clear}>
+          <CustomButton onClick={clear}>
             Clear
-          </button>
+          </CustomButton>
         </div>
       </section>
+      {showNoResult && <Callout variant="danger" className="mx-4 border-2 border-red-500 !text-black">
+        Not Found
+      </Callout>}
       <WeatherBlock />
       <SearchHistory history={searchHistory} />
     </div>

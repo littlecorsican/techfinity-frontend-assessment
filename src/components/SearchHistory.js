@@ -2,7 +2,6 @@ import SectionHeader from "./SectionHeader";
 import {formatTimestampToTime} from "../utils/helper";
 import { useState, useRef, useContext } from 'react';
 import { WeatherContext } from '../context/WeatherContext';
-import { Button } from "@govtechmy/myds-react/button";
 import { SearchIcon } from "@govtechmy/myds-react/icon";
 
 function SearchHistory({ history }) {
@@ -40,7 +39,6 @@ function HistoryItem({ history }) {
                 <div onClick={()=>deleteFromHistory(history)}>
                     Delete
                 </div>
-                <Button variant="primary-fill">Hello MYDS</Button>;
             </div>
         </li>
     )
