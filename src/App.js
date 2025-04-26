@@ -18,26 +18,24 @@ import {
 function Client() {
   const cityRef = useRef("");
   const countryRef = useRef("");
-  const { apiUrl, apiKey, weather, setWeather, showNoResult, setShowNoResult, searchHistory } = useContext(WeatherContext);
+  const { apiUrl, apiKey, weather, setWeather, showNoResult, setShowNoResult, searchHistory, search } = useContext(WeatherContext);
   
-  const search=async()=>{
+  const handleSearch=async()=>{
     try {
+      setShowNoResult(false);
       const city = cityRef.current.value;
       const country = countryRef.current.value;
       if (!city && !country) {
         return;
       }
-      const { lat, lon } = await getLatLongByName({ name: city, apiKey, baseUrl: apiUrl });
-      console.log(lat, lon);
-      const weatherData = await getWeatherByLatLong({ lat, lon, apiKey, baseUrl: apiUrl });
-      console.log(weatherData);
+      search({ city, country });
     } catch (error) {
       console.error('Error, ', error);
       setShowNoResult(true);
     }
   }
 
-  const clear=()=>{
+  const handleClear=()=>{
     cityRef.current.value = ""
     countryRef.current.value = "";
   }
@@ -59,12 +57,12 @@ function Client() {
           <input type="text" id="country_input" className='border-2 border-black rounded w-80' ref={countryRef} />
         </div>
         <div className="p-2">
-          <CustomButton onClick={search}>
+          <CustomButton onClick={handleSearch}>
             Search
           </CustomButton>
         </div>
         <div className="p-2">
-          <CustomButton onClick={clear}>
+          <CustomButton onClick={handleClear}>
             Clear
           </CustomButton>
         </div>

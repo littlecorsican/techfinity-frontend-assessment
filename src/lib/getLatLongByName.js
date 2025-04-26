@@ -3,9 +3,7 @@ export async function getLatLongByName({
     apiKey,
     baseUrl
 }) {
-
-    return [
-      {
+    return {
           "name": "Ipoh",
           "local_names": {
               "th": "อีโปะฮ์",
@@ -31,7 +29,7 @@ export async function getLatLongByName({
           "country": "MY",
           "state": "Perak"
       }
-  ]
+  
 
 
     const url = `${baseUrl}/geo/1.0/direct?q=${encodeURIComponent(name)}&limit=1&appid=${apiKey}`;

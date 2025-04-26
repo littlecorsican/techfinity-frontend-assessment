@@ -1,4 +1,7 @@
 import { useState, createContext } from 'react';
+import { getLatLongByName } from '../lib/getLatLongByName';
+import { getWeatherByLatLong } from '../lib/getWeatherByLatLong';
+
 
 export const WeatherContext = createContext();
 
@@ -27,11 +30,27 @@ export function WeatherProvider({ children }) {
       setSearchHistory(prev => prev.filter(item => item.datetime !== history.datetime && item.name !== history.name));
     };
 
-    const searchAgain =()=>{
-      console.log("search again")
+    const search=async({ city, country })=>{
+      try {
+        const { lat, lon } = await getLatLongByName({ name: `${city}, ${country}`, apiKey, baseUrl: apiUrl });
+        console.log(lat, lon);
+        const weatherData = await getWeatherByLatLong({ lat, lon, apiKey, baseUrl: apiUrl });
+        console.log(weatherData);
+        const { current } = weatherData;
+        const { humidity, temp, weather, clouds } = current;
+        setWeather({
+          humidity,
+          temp,
+          weather,
+          clouds
+        })
+      } catch (error) {
+        console.error('Error, ', error);
+        setShowNoResult(true);
+      } finally {
+        addToHistory({ city, country });
+      }
     }
-
-
   
     const value = {
       apiUrl,
@@ -41,7 +60,7 @@ export function WeatherProvider({ children }) {
       searchHistory,
       addToHistory,
       deleteFromHistory,
-      searchAgain
+      search
     };
   
     return (
