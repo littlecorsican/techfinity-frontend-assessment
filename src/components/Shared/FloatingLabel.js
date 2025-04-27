@@ -20,7 +20,7 @@ const FloatingLabelInput = forwardRef(({ label, value}, ref) => {
             ref={ref}
         />
             <label
-                className={`absolute text-md text-gray-500 scale-75 top-0 z-10 left-0`}
+                className={cn("absolute text-md text-gray-500 scale-75 top-0 z-10 left-0", theme === "dark" ? "text-white/40" : "text-black/40" )}
             >
             {label}
         </label>

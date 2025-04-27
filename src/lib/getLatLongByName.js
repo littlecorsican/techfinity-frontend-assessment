@@ -6,18 +6,17 @@ export async function getLatLongByName({
   // throw new Error(`HTTP error! Status:`); # uncomment this line to simulate error
 
     const url = `${baseUrl}/geo/1.0/direct?q=${encodeURIComponent(name)}&limit=1&appid=${apiKey}`;
-    console.log(url);
   
     try {
       const response = await fetch(url);
-      console.log(response);
+
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
       if (data.length > 0) {
-        const { lat, lon } = data[0];
-        return { lat, lon };
+        const { lat, lon, name, country } = data[0];
+        return { lat, lon, name, country };
       } else {
         throw new Error('No location found');
       }

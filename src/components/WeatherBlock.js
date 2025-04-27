@@ -24,7 +24,7 @@ function WeatherBlock() {
             <img src="sun.png" className="absolute w-[157px] top-[-100px] md:w-[300px] h-auto right-[0px] md:top-[-150px]" />
             <div
                 className={cn(
-                    "text-left text-base md:text-2xl",
+                    "text-left text-14 md:text-16",
                     theme === "dark" ? themes.dark.textColor : themes.light.textColor
                 )}
                 >Today's Weather</div>
@@ -55,13 +55,13 @@ function WeatherBlock() {
                     )}
                 >
                     <div className="font-bold">
-                        {location || "Johor, MY"}
+                        {location || ""}
                     </div>
                     <div className="">
                         {formatTimestampToDateTime(time) || "01-09-2022 09:41am"}
                     </div>
                     <div className="">
-                        Humidity: {humidity || 58}%
+                        Humidity: {humidity || 0}%
                     </div>
                     <div className="">
                         {cloudCondition > 0 ? `Cloud` : "No Cloud"}
@@ -77,7 +77,7 @@ function WeatherBlock() {
                             theme === "dark" ? themes.dark.textColor : themes.light.textColorPurple
                         )}
                     >
-                        {temperature || 26}°
+                        {temperature || 0}°
                     </div>
                     <div
                         className={cn(
@@ -101,7 +101,7 @@ function WeatherBlock() {
                 </div>
                 <div
                     className={cn(
-                        "flex-1 flex flex-col text-xs justify-end gap-2 text-right",
+                        "flex-1 flex flex-col text-14 justify-end gap-2 text-right",
                         theme === "dark" ? themes.dark.textColor : themes.light.textColorDarkGray
                     )}
                 >

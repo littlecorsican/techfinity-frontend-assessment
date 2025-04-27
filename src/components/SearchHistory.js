@@ -16,7 +16,7 @@ function SearchHistory({ history }) {
              <div className="text-left p-4">
                 <span
                     className={cn(
-                        "text-xs md:text-xl",
+                        "text-14 md:text-16",
                         theme === "dark" ? themes.dark.textColor : themes.light.textColor
                     )}
                 >Search History</span>
@@ -42,7 +42,7 @@ function HistoryItem({ historyItem }) {
     return (
         <li
             className={cn(
-                "rounded-[16px] backdrop-blur-[20px] text-left w-full font-arial py-6 sm:text-sm md:!text-lg px-4 mb-4",
+                "rounded-[16px] backdrop-blur-[20px] text-left w-full font-arial py-6 sm:text-14 md:text-16 px-4 mb-4",
                 theme === "dark" ? `${themes.dark.textColor} ${themes.dark.semiTransparentBg}` : `${themes.light.textColor} ${themes.light.semiTransparentBg}`
             )}
         >
@@ -87,7 +87,7 @@ function HistoryItem({ historyItem }) {
                     <div className="w-full">{historyItem?.name}</div>
                     <div
                         className={cn(
-                            "text-xs w-full",
+                            "text-10 w-full",
                             theme === "dark"
                             ? themes.dark.semiTransparentTextColor
                             : themes.light.textColor

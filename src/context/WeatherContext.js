@@ -11,18 +11,13 @@ export const WeatherContext = createContext();
 export function WeatherProvider({ children }) {
   const apiUrl = process.env.REACT_APP_WEATHER_API_BASE_URL;
   const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
-  const dummyHistory = [
-    { id: uuidv4(), name: "New York, US", datetime: 1714220000000 },
-    { id: uuidv4(), name: "Los Angeles, US", datetime: 1714230000000 },
-    { id: uuidv4(), name: "Chicago, US", datetime: 1714240000000 },
-    { id: uuidv4(), name: "Houston, US", datetime: 1714250000000 },
-  ];
+
   
 
   const [weather, setWeather] = useState(null);
   const [showNoResult, setShowNoResult] = useState(false);
   const [theme, setTheme] = useState("light"); // either light or dark , two values only
-  const [searchHistory, setSearchHistory] = useState(dummyHistory)
+  const [searchHistory, setSearchHistory] = useState([])
   
   const addToHistory = (inputValue) => {
     const datetime = Date.now();
@@ -39,18 +34,17 @@ export function WeatherProvider({ children }) {
     setSearchHistory(prev => prev.filter(item => item.id !== id));
   };
 
-  const search=async(name)=>{
+  const search=async(searchValue)=>{
     try {
-      const { lat, lon } = await getLatLongByName({ name, apiKey, baseUrl: apiUrl });
-      console.log(lat, lon);
+      const { lat, lon, name, country } = await getLatLongByName({ name: searchValue, apiKey, baseUrl: apiUrl });
       const weatherData = await getWeatherByLatLong({ lat, lon, apiKey, baseUrl: apiUrl });
-      console.log(weatherData);
       const { current } = weatherData;
       const { humidity, temp, weather, clouds, dt } = current;
       const { max, min } = extractDailyMinMaxTemperatures(weatherData)
       setWeather({
         humidity,
         temperature: temp,
+        location: `${name}, ${country}`,
         time: dt,
         weather,
         clouds,
@@ -63,7 +57,7 @@ export function WeatherProvider({ children }) {
       console.error('Error, ', error);
       setShowNoResult(true);
     } finally {
-      addToHistory(name);
+      addToHistory(searchValue);
     }
   }
   
