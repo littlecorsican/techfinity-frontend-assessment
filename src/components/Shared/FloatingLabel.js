@@ -3,7 +3,7 @@ import { useTheme } from "@govtechmy/myds-react/hooks";
 import { cn } from "../../utils/helper";
 import { themes } from "../../utils/theme";
 
-const FloatingLabelInput = forwardRef(({ label, value}, ref) => {
+const FloatingLabelInput = forwardRef(({ label, value, onKeyDown}, ref) => {
 
     const { theme } = useTheme();
 
@@ -18,6 +18,7 @@ const FloatingLabelInput = forwardRef(({ label, value}, ref) => {
             )}
             placeholder={label}
             ref={ref}
+            onKeyDown={onKeyDown}
         />
             <label
                 className={cn("absolute text-md text-gray-500 scale-75 top-0 z-10 left-0", theme === "dark" ? "text-white/40" : "text-black/40" )}

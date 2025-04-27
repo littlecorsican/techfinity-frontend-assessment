@@ -23,6 +23,12 @@ function SearchBar() {
             setShowNoResult(true);
         }
     }
+    
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    }
   
     return (
         <div className="max-w-[360px] md:max-w-[700px] h-[60px] mx-auto flex flex-row items-center justify-between gap-4">
@@ -30,6 +36,7 @@ function SearchBar() {
                 <FloatingLabelInput 
                     label="Country" 
                     ref={searchInputRef}
+                    onKeyDown={handleKeyDown}
                 />
             </div>
             <div className="bg-[#6C40B5] w-[60px] h-[60px] rounded flex flex-row items-center justify-center cursor-pointer" onClick={handleSearch}>
