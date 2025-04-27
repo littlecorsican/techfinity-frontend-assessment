@@ -11,6 +11,7 @@ import { cn } from "../utils/helper";
 
 function Content({ history }) {
     const { theme } = useTheme();
+    const { weather } = useContext(WeatherContext);
     return (
             <div
             className={cn(
@@ -18,7 +19,7 @@ function Content({ history }) {
                 theme === "dark" ? themes.dark.borderNone : themes.light.borderWhite
             )}
             >
-            <WeatherBlock />
+            {weather && <WeatherBlock />}
             <SearchHistory history={history} />
         </div>
     );

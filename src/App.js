@@ -1,11 +1,6 @@
-import SectionHeader from './components/SectionHeader';
-import SearchHistory from './components/SearchHistory';
 import Content from './components/Content';
 import SearchBar from './components/SearchBar';
-import WeatherBlock from './components/WeatherBlock';
 import './App.css';
-import { getLatLongByName } from './lib/getLatLongByName';
-import { getWeatherByLatLong } from './lib/getWeatherByLatLong';
 import { useState, useRef, useContext } from 'react';
 import { WeatherProvider, WeatherContext } from './context/WeatherContext';
 // import "@govtechmy/myds-style/full.css";

@@ -24,7 +24,7 @@ export function formatTimestampToTime(timestamp) {
 export function formatTimestampToDateTime(timestamp) {
     const date = new Date(timestamp);
     let day = date.getDate();
-    let month = date.getMonth() + 1; // Month is zero-indexed
+    let month = date.getMonth() + 1;
     const year = date.getFullYear();
     let hours = date.getHours();
     const minutes = date.getMinutes();
@@ -39,4 +39,25 @@ export function formatTimestampToDateTime(timestamp) {
     const minutesStr = minutes < 10 ? '0' + minutes : minutes;
 
     return `${dayStr}-${monthStr}-${year} ${hoursStr}:${minutesStr}${ampm}`;
+}
+
+
+export function extractDailyMinMaxTemperatures(data) {
+  if (!data?.daily || data.daily.length === 0) {
+    return { min: null, max: null };
+  }
+
+  let minTemp = Infinity;
+  let maxTemp = -Infinity;
+
+  data.daily.forEach(day => {
+    if (day.temp?.min !== undefined) {
+      minTemp = Math.min(minTemp, day.temp.min);
+    }
+    if (day.temp?.max !== undefined) {
+      maxTemp = Math.max(maxTemp, day.temp.max);
+    }
+  });
+
+  return { min: minTemp, max: maxTemp };
 }

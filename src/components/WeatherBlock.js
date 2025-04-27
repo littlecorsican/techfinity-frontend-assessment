@@ -2,16 +2,22 @@ import { formatTimestampToDateTime } from "../utils/helper";
 import { useTheme } from "@govtechmy/myds-react/hooks";
 import { themes } from "../utils/theme";
 import { cn } from "../utils/helper";
+import { WeatherContext } from "../context/WeatherContext";
+import { useState, useRef, useContext } from 'react';
 
-function WeatherBlock({ 
-    location,
-    description,
-    temperature,
-    humidity,
-    time,
-    cloudCondition
-}) {
+
+function WeatherBlock() {
     const { theme } = useTheme();
+    const { weather } = useContext(WeatherContext);
+    const { 
+        location,
+        description,
+        temperature,
+        temperatureData,
+        humidity,
+        time,
+        cloudCondition,
+    } = weather || {};
 
     return (
         <div className="flex flex-col gap-2 relative">
@@ -32,8 +38,15 @@ function WeatherBlock({
                 >
                     {temperature || 26}°
                 </div>
-                <div className="text-left">
-                    H: L:
+                <div
+                    className={cn(
+                        "text-left",
+                        theme === "dark"
+                        ? themes.dark.textColor
+                        : themes.light.textColor
+                    )}
+                >
+                    H: {temperatureData?.max || 0}° L: {temperatureData?.min || 0}°
                 </div>
                 <div
                     className={cn(
@@ -66,9 +79,17 @@ function WeatherBlock({
                     >
                         {temperature || 26}°
                     </div>
-                    <div className="text-left">
-                        H: L:
+                    <div
+                        className={cn(
+                            "text-left",
+                            theme === "dark"
+                            ? themes.dark.textColor
+                            : themes.light.textColor
+                        )}
+                    >
+                        H: {temperatureData?.max || 0}° L: {temperatureData?.min || 0}°
                     </div>
+
                     <div
                         className={cn(
                             "font-bold text-left",

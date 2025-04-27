@@ -2,7 +2,7 @@ import { useState, createContext } from 'react';
 import { getLatLongByName } from '../lib/getLatLongByName';
 import { getWeatherByLatLong } from '../lib/getWeatherByLatLong';
 import { v4 as uuidv4 } from 'uuid'; 
-
+import { extractDailyMinMaxTemperatures } from '../utils/helper';
 
 export const WeatherContext = createContext();
 
@@ -44,12 +44,18 @@ export function WeatherProvider({ children }) {
       const weatherData = await getWeatherByLatLong({ lat, lon, apiKey, baseUrl: apiUrl });
       console.log(weatherData);
       const { current } = weatherData;
-      const { humidity, temp, weather, clouds } = current;
+      const { humidity, temp, weather, clouds, dt } = current;
+      const { max, min } = extractDailyMinMaxTemperatures(weatherData)
       setWeather({
         humidity,
-        temp,
+        temperature: temp,
+        time: dt,
         weather,
-        clouds
+        clouds,
+        temperatureData: {
+          max,
+          min
+        }
       })
     } catch (error) {
       console.error('Error, ', error);
