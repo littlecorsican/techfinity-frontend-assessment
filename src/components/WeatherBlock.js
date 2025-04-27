@@ -56,7 +56,7 @@ function WeatherBlock({
                 </div>
             </div>
             {/* show this in mobile */}
-            <div className="md:hidden sm:flex show-this-in-mobile flex-row gap-2">
+            <div className="md:hidden sm:flex show-this-in-mobile">
                 <div className="flex-1">
                     <div
                         className={cn(
