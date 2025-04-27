@@ -22,20 +22,6 @@ function Client() {
   const countryRef = useRef("");
   const { apiUrl, apiKey, weather, setWeather, showNoResult, setShowNoResult, searchHistory, search } = useContext(WeatherContext);
   
-  const handleSearch=async()=>{
-    try {
-      setShowNoResult(false);
-      const city = cityRef.current.value;
-      const country = countryRef.current.value;
-      if (!city && !country) {
-        return;
-      }
-      search({ city, country });
-    } catch (error) {
-      console.error('Error, ', error);
-      setShowNoResult(true);
-    }
-  }
 
   const handleClear=()=>{
     cityRef.current.value = ""

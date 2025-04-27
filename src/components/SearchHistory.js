@@ -34,7 +34,7 @@ function HistoryItem({ historyItem }) {
           <div onClick={() => search(historyItem?.name)} className="rounded-full border-2 border-[#fff] p-2 bg-white hover:bg-gray-300 cursor-pointer">
             <SearchIcon className="w-6 h-6" />
           </div>
-          <div onClick={() => deleteFromHistory(historyItem)} className="rounded-full border-2 border-[#fff] p-2 bg-white hover:bg-gray-300 cursor-pointer">
+          <div onClick={() => deleteFromHistory(historyItem?.id)} className="rounded-full border-2 border-[#fff] p-2 bg-white hover:bg-gray-300 cursor-pointer">
             <TrashIcon className="w-6 h-6" />
           </div>
         </div>
