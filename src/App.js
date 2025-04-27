@@ -8,7 +8,7 @@ import { getLatLongByName } from './lib/getLatLongByName';
 import { getWeatherByLatLong } from './lib/getWeatherByLatLong';
 import { useState, useRef, useContext } from 'react';
 import { WeatherProvider, WeatherContext } from './context/WeatherContext';
-import "@govtechmy/myds-style/full.css";
+// import "@govtechmy/myds-style/full.css";
 import CustomButton from './components/Shared/CustomButton';
 import {
   Callout,
@@ -29,7 +29,7 @@ function Client() {
   }
   
   return (
-    <div className="App p-4">
+    <div className="App p-4 min-w-[393px]">
       <SearchBar />
       {showNoResult && <Callout variant="danger" className="mx-4 border-2 border-red-500 !text-black">
         Not Found

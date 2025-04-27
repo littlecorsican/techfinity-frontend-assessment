@@ -21,7 +21,7 @@ function SearchBar() {
     }
   
     return (
-        <div className="max-w-[700px] h-[60px] mx-auto flex flex-row items-center justify-between gap-4">
+        <div className="max-w-[360px] md:max-w-[700px] h-[60px] mx-auto flex flex-row items-center justify-between gap-4">
             <div className="rounded-lg border-none shadow-md flex-1">
                 <FloatingLabelInput 
                     label="Country" 
