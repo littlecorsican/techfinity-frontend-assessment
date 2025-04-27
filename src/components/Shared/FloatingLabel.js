@@ -14,7 +14,7 @@ const FloatingLabelInput = forwardRef(({ label, value}, ref) => {
             value={value}
             className={cn(
                 "block w-full px-2.5 h-[60px] bg-white/20 rounded-lg border-none focus:border-none focus:outline-none text-lg",
-                theme === "dark" ? `text-${themes.dark.textColor}` : `text-${themes.light.textColor}`
+                theme === "dark" ? themes.dark.textColor : themes.light.textColor
             )}
             placeholder={label}
             ref={ref}

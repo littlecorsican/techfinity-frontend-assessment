@@ -1,5 +1,7 @@
 import { formatTimestampToDateTime } from "../utils/helper";
-
+import { useTheme } from "@govtechmy/myds-react/hooks";
+import { themes } from "../utils/theme";
+import { cn } from "../utils/helper";
 
 function WeatherBlock({ 
     location,
@@ -9,21 +11,36 @@ function WeatherBlock({
     time,
     cloudCondition
 }) {
-  
+    const { theme } = useTheme();
 
     return (
         <div className="flex flex-col gap-2 relative">
             <img src="sun.png" className="absolute w-[157px] top-[-100px] md:w-[300px] h-auto right-[0px] md:top-[-150px]" />
-            <div className="text-left text-black text-base md:!text-2xl">Today's Weather</div>
+            <div
+                className={cn(
+                    "text-left text-base md:text-2xl",
+                    theme === "dark" ? themes.dark.textColor : themes.light.textColor
+                )}
+                >Today's Weather</div>
             {/* Show these in desktop mode */}
             <div className="md:block sm:hidden show-this-in-desktop">
-                <div className="text-left text-[7rem] text-[#6C40B5] font-bold">
+                <div
+                    className={cn(
+                        "text-left text-[7rem] font-bold",
+                        theme === "dark" ? themes.dark.textColor : themes.light.textColorPurple
+                    )}
+                >
                     {temperature || 26}°
                 </div>
                 <div className="text-left">
                     H: L:
                 </div>
-                <div className="flex flex-row justify-between gap-6 text-[#666666] ">
+                <div
+                    className={cn(
+                        "flex flex-row justify-between gap-6",
+                        theme === "dark" ? themes.dark.textColor : themes.light.textColorDarkGray
+                    )}
+                >
                     <div className="font-bold">
                         {location || "Johor, MY"}
                     </div>
@@ -41,17 +58,32 @@ function WeatherBlock({
             {/* show this in mobile */}
             <div className="md:hidden sm:flex show-this-in-mobile flex-row gap-2">
                 <div className="flex-1">
-                    <div className="text-left text-6xl text-[#6C40B5] font-bold">
+                    <div
+                        className={cn(
+                            "text-left text-6xl font-bold",
+                            theme === "dark" ? themes.dark.textColor : themes.light.textColorPurple
+                        )}
+                    >
                         {temperature || 26}°
                     </div>
                     <div className="text-left">
                         H: L:
                     </div>
-                    <div className="font-bold text-left text-[#666666]">
+                    <div
+                        className={cn(
+                            "font-bold text-left",
+                            theme === "dark" ? themes.dark.textColor : themes.light.textColorDarkGray
+                        )}
+                    >
                         {location || "Johor, MY"}
                     </div>
                 </div>
-                <div className="flex-1 flex flex-col text-xs justify-end gap-2 text-right text-[#666666] ">
+                <div
+                    className={cn(
+                        "flex-1 flex flex-col text-xs justify-end gap-2 text-right",
+                        theme === "dark" ? themes.dark.textColor : themes.light.textColorDarkGray
+                    )}
+                >
                     <div className="">
                         {cloudCondition > 0 ? `Cloud` : "No Cloud"}
                     </div>
