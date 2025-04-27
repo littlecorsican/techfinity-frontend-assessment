@@ -4,6 +4,8 @@ export async function getLatLongByName({
     baseUrl
 }) {
 
+  throw new Error(`HTTP error! Status:`);
+
     const url = `${baseUrl}/geo/1.0/direct?q=${encodeURIComponent(name)}&limit=1&appid=${apiKey}`;
     console.log(url);
   
