@@ -6,6 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        'sans': ['"Noto Sans"', 'sans-serif'],
         'arial-black': ['"Arial Black"', 'Arial', 'sans-serif'],
         'arial': ['Arial', 'sans-serif'],
       },
