@@ -19,6 +19,7 @@ export function WeatherProvider({ children }) {
 
   const [weather, setWeather] = useState(null);
   const [showNoResult, setShowNoResult] = useState(false);
+  const [theme, setTheme] = useState("light"); // either light or dark , two values only
   const [searchHistory, setSearchHistory] = useState(dummyHistory)
   
   const addToHistory = (inputValue) => {
@@ -66,7 +67,8 @@ export function WeatherProvider({ children }) {
     searchHistory,
     addToHistory,
     deleteFromHistory,
-    search
+    search,
+    theme, setTheme
   };
 
   return (

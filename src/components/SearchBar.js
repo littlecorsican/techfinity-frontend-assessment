@@ -3,10 +3,13 @@ import { useState, useRef, useContext } from 'react';
 import FloatingLabelInput from "./Shared/FloatingLabel";
 import { SearchIcon } from "@govtechmy/myds-react/icon";
 import { WeatherContext } from '../context/WeatherContext';
+import { useTheme } from "@govtechmy/myds-react/hooks";
+
 
 function SearchBar() {
     const { setShowNoResult, search } = useContext(WeatherContext);
     const searchInputRef = useRef(null);
+    
 
     const handleSearch = async () => {
         try {

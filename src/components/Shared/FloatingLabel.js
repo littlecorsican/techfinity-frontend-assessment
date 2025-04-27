@@ -1,12 +1,21 @@
 import { forwardRef } from "react";
+import { useTheme } from "@govtechmy/myds-react/hooks";
+import { cn } from "../../utils/helper";
+import { themes } from "../../utils/theme";
 
 const FloatingLabelInput = forwardRef(({ label, value}, ref) => {
+
+    const { theme } = useTheme();
+
   return (
     <div className="relative w-full">
         <input
             type="text"
             value={value}
-            className="block w-full px-2.5 h-[60px] text-black bg-white/20 rounded-lg border-none focus:border-none focus:outline-none text-lg"
+            className={cn(
+                "block w-full px-2.5 h-[60px] bg-white/20 rounded-lg border-none focus:border-none focus:outline-none text-lg",
+                theme === "dark" ? `text-${themes.dark.textColor}` : `text-${themes.light.textColor}`
+            )}
             placeholder={label}
             ref={ref}
         />

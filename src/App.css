@@ -1,10 +1,20 @@
 .App {
   text-align: center;
+  min-height: 100vh; 
+}
+
+.dark {
+  background-image: url('../public/bg-dark.png'); 
+  background-size: cover;
+  background-repeat: no-repeat; 
+  background-position: center;
+}
+
+.light {
   background-image: url('../public/bg-light.png'); 
   background-size: cover;
   background-repeat: no-repeat; 
   background-position: center;
-  min-height: 100vh; 
 }
 
 .App-logo {

@@ -9,27 +9,26 @@ import { getWeatherByLatLong } from './lib/getWeatherByLatLong';
 import { useState, useRef, useContext } from 'react';
 import { WeatherProvider, WeatherContext } from './context/WeatherContext';
 // import "@govtechmy/myds-style/full.css";
-import CustomButton from './components/Shared/CustomButton';
+import { ThemeProvider } from "@govtechmy/myds-react/hooks";
+import { ThemeSwitch } from "@govtechmy/myds-react/theme-switch";
+import { useTheme } from "@govtechmy/myds-react/hooks";
 import {
   Callout,
-  CalloutAction,
-  CalloutTitle,
-  CalloutContent,
 } from "@govtechmy/myds-react/callout";
+import { cn } from './utils/helper';
 
 function Client() {
-  const cityRef = useRef("");
-  const countryRef = useRef("");
-  const { apiUrl, apiKey, weather, setWeather, showNoResult, setShowNoResult, searchHistory, search } = useContext(WeatherContext);
-  
+  const { showNoResult, searchHistory } = useContext(WeatherContext);
+  const { theme } = useTheme();
 
-  const handleClear=()=>{
-    cityRef.current.value = ""
-    countryRef.current.value = "";
-  }
-  
   return (
-    <div className="App p-4 min-w-[393px]">
+    <div className={cn(
+      "App p-4 min-w-[393px]",
+      theme === "dark" ? "dark" : "light"
+    )}>
+      <div className="p-2 flex justify-center border-none">
+        <ThemeSwitch className="" />
+      </div>
       <SearchBar />
       {showNoResult && <Callout variant="danger" className="mx-4 border-2 border-red-500 !text-black">
         Not Found
@@ -42,7 +41,9 @@ function Client() {
 function App() {
   return (
     <WeatherProvider>
-      <Client />
+      <ThemeProvider>
+        <Client />
+      </ThemeProvider>
     </WeatherProvider>
   );
 }

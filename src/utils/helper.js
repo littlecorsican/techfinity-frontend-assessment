@@ -1,3 +1,10 @@
+import clsx from 'clsx';
+
+export function cn(...inputs) {
+  return clsx(inputs);
+}
+
+
 export function formatTimestampToTime(timestamp) {
     const date = new Date(timestamp);
     let hours = date.getHours();
