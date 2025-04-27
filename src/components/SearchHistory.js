@@ -1,4 +1,3 @@
-import SectionHeader from "./SectionHeader";
 import {formatTimestampToDateTime} from "../utils/helper";
 import { useState, useRef, useContext } from 'react';
 import { WeatherContext } from '../context/WeatherContext';
@@ -9,14 +8,14 @@ function SearchHistory({ history }) {
 
     return (
         <>
-            <SectionHeader text="Search History" />
-            <ol className="list-decimal pl-5">
+            <div className="text-left p-4 text-2xl">Search History</div>
+            <ul className="w-full">
                 {
-                    history.map((history, index) => (
-                        <HistoryItem key={`history_item_${index}`} history={history} />
+                    history.map((historyItem, index) => (
+                        <HistoryItem key={`history_item_${index}`} historyItem={historyItem} />
                     ))
                 }
-            </ol>
+            </ul>
         </>
     );
 }
@@ -24,22 +23,22 @@ function SearchHistory({ history }) {
 export default SearchHistory;
   
 
-function HistoryItem({ history }) {
-
+function HistoryItem({ historyItem }) {
     const { deleteFromHistory, search } = useContext(WeatherContext);
-
+  
     return (
-        <li className="border-b-gray border-b-2 text-left w-full m-4 font-arial text-2xl p-2 flex justify-between">
-            <div>{history.name}</div>
-            <div className="flex flex-row justify-between gap-8">
-                {formatTimestampToDateTime(history.datetime)}
-                <div onClick={()=>search(history.name)} className="rounded-full border-2 border-[#fff] p-2 bg-white hover:bg-gray-300 cursor-pointer">
-                    <SearchIcon className="w-6 h-6" />
-                </div>
-                <div onClick={()=>deleteFromHistory(history)} className="rounded-full border-2 border-[#fff] p-2 bg-white hover:bg-gray-300 cursor-pointer">
-                    <TrashIcon className="w-6 h-6" />
-                </div>
-            </div>
-        </li>
+      <li className="bg-white/40 rounded-[16px] text-black text-left w-full font-arial text-2xl py-6 flex justify-between items-center text-lg px-4 mb-4">
+        <div className="flex-1">{historyItem?.name}</div>
+        <div className="flex flex-row justify-end gap-4 items-center flex-shrink-0">
+          {formatTimestampToDateTime(historyItem?.datetime)}
+          <div onClick={() => search(historyItem?.name)} className="rounded-full border-2 border-[#fff] p-2 bg-white hover:bg-gray-300 cursor-pointer">
+            <SearchIcon className="w-6 h-6" />
+          </div>
+          <div onClick={() => deleteFromHistory(historyItem)} className="rounded-full border-2 border-[#fff] p-2 bg-white hover:bg-gray-300 cursor-pointer">
+            <TrashIcon className="w-6 h-6" />
+          </div>
+        </div>
+      </li>
     )
-}
+  }
+  

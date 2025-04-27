@@ -1,5 +1,7 @@
 import SectionHeader from './components/SectionHeader';
 import SearchHistory from './components/SearchHistory';
+import Content from './components/Content';
+import SearchBar from './components/SearchBar';
 import WeatherBlock from './components/WeatherBlock';
 import './App.css';
 import { getLatLongByName } from './lib/getLatLongByName';
@@ -41,37 +43,12 @@ function Client() {
   }
   
   return (
-    <div className="App">
-      <SectionHeader text="Today's Weather" />
-      <section className="flex flex-row justify-start">
-        <div className="p-2">
-          <label htmlFor='city_input' className='px-2 font-arial text-2xl'>
-            City: 
-          </label>
-          <input type="text" id="city_input" className="border-2 border-black rounded w-80" ref={cityRef} />
-        </div>
-        <div className="p-2">
-          <label htmlFor='city_input' className='px-2 font-arial text-2xl'>
-            Country: 
-          </label>
-          <input type="text" id="country_input" className='border-2 border-black rounded w-80' ref={countryRef} />
-        </div>
-        <div className="p-2">
-          <CustomButton onClick={handleSearch}>
-            Search
-          </CustomButton>
-        </div>
-        <div className="p-2">
-          <CustomButton onClick={handleClear}>
-            Clear
-          </CustomButton>
-        </div>
-      </section>
+    <div className="App p-4">
+      <SearchBar />
       {showNoResult && <Callout variant="danger" className="mx-4 border-2 border-red-500 !text-black">
         Not Found
       </Callout>}
-      <WeatherBlock />
-      <SearchHistory history={searchHistory} />
+      <Content history={searchHistory} />
     </div>
   );
 }

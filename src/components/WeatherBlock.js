@@ -1,4 +1,4 @@
-
+import { formatTimestampToDateTime } from "../utils/helper";
 
 
 function WeatherBlock({ 
@@ -12,26 +12,27 @@ function WeatherBlock({
   
 
     return (
-        <div className="p-6 rounded-lg max-w-sm">
-            <div className="text-gray-700 text-sm">{location}</div>
-            <div className="text-3xl font-bold text-black mb-4">{cloudCondition}</div>
-
-            <div className="space-y-2 text-gray-800">
-                <div className="flex">
-                <span className="w-28 font-semibold">Description:</span>
-                <span>{description || "no description"}</span>
+        <div className="flex flex-col gap-2 relative">
+            <img src="sun.png" className="absolute w-[300px] h-auto right-[0px] top-[-150px]" />
+            <div className="text-left text-black text-2xl">Today's Weather</div>
+            <div className="text-left text-[7rem] text-[#6C40B5] font-bold">
+                {temperature || 26}°
+            </div>
+            <div className="text-left">
+                H: L:
+            </div>
+            <div className="flex flex-row justify-between gap-8 text-[#666666]">
+                <div className="font-bold">
+                    {location || "Johor, MY"}
                 </div>
-                <div className="flex">
-                <span className="w-28 font-semibold">Temperature:</span>
-                <span> {temperature || "0" }</span>
+                <div className="">
+                    {formatTimestampToDateTime(time) || "01-09-2022 09:41am"}
                 </div>
-                <div className="flex">
-                <span className="w-28 font-semibold">Humidity:</span>
-                <span> {humidity || 0} </span>
+                <div className="">
+                    Humidity: {humidity || 58}%
                 </div>
-                <div className="flex">
-                <span className="w-28 font-semibold">Time:</span>
-                <span> {time || "12:00 am"} </span>
+                <div className="">
+                    {cloudCondition > 0 ? `Cloud` : "No Cloud"}
                 </div>
             </div>
         </div>
