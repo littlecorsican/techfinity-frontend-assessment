@@ -1,7 +1,5 @@
-import {formatTimestampToDateTime} from "../utils/helper";
 import { useState, useRef, useContext } from 'react';
 import { WeatherContext } from '../context/WeatherContext';
-import { SearchIcon, TrashIcon } from "@govtechmy/myds-react/icon";
 import WeatherBlock from "./WeatherBlock";
 import  SearchHistory from "./SearchHistory";
 import { useTheme } from "@govtechmy/myds-react/hooks";
