@@ -2,7 +2,9 @@ import { useState, createContext } from 'react';
 import { getLatLongByName } from '../lib/getLatLongByName';
 import { getWeatherByLatLong } from '../lib/getWeatherByLatLong';
 import { v4 as uuidv4 } from 'uuid'; 
-import { extractDailyMinMaxTemperatures } from '../utils/helper';
+import { extractDailyMinMaxTemperatures, capitalizeEachWord } from '../utils/helper';
+
+
 
 export const WeatherContext = createContext();
 
@@ -26,7 +28,7 @@ export function WeatherProvider({ children }) {
     const datetime = Date.now();
     const newEntry = {
       id: uuidv4(),
-      name: inputValue,
+      name: capitalizeEachWord(inputValue),
       datetime
     };
     setSearchHistory(prev => [newEntry, ...prev]);
