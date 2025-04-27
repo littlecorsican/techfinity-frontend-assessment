@@ -25,7 +25,7 @@ function Client() {
         <ThemeSwitch className="" />
       </div>
       <SearchBar />
-      {showNoResult && <Callout variant="danger" className="m-4 border-2 border-red-500 text-left text-black bg-red-300">
+      {showNoResult && <Callout variant="danger" className="flex !justify-start p-2 p my-4 border-2 border-red-500 !text-left text-black bg-red-300">
         Not Found
       </Callout>}
       <Content history={searchHistory} />
